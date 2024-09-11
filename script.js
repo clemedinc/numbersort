@@ -118,7 +118,7 @@ function generateCategories() {
                 const categoryElement = document.createElement('div');
                 categoryElement.className = 'category';
                 categoryElement.textContent = category;
-                categoryElement.onclick = () => categoryElement.classList.toggle('selected');
+                categoryElement.onclick = () => toggleCategory(categoryElement);
                 
                 if (hoverEnabled && categoryExplanations[category]) {
                     categoryElement.title = categoryExplanations[category];
@@ -130,6 +130,10 @@ function generateCategories() {
             categoriesContainer.appendChild(groupElement);
         }
     }
+}
+
+function toggleCategory(element) {
+    element.classList.toggle('selected');
 }
 
 function checkAnswers() {
@@ -286,6 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('back-to-menu').addEventListener('click', returnToMenu);
     document.getElementById('save-settings').addEventListener('click', saveSettings);
     document.getElementsByClassName('close')[0].addEventListener('click', closeSettings);
+
+    // Initialize the game
+    generateCategories();
 });
 
 // Close modal when clicking outside
